@@ -1,5 +1,5 @@
-FROM       alpine:3.4
-MAINTAINER Jon Jagger <jon@jaggersoft.com>
+FROM  alpine:3.4
+LABEL maintainer=jon@jaggersoft.com
 # Copied from frolvlad/alpine-glibc:alpine-3.4
 
 # Here we install GNU libc (aka glibc) and set C.UTF-8 locale as default.
