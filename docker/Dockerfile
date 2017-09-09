@@ -1,4 +1,4 @@
-FROM  alpine:3.4
+FROM  alpine:3.6
 LABEL maintainer=jon@jaggersoft.com
 # Copied from frolvlad/alpine-glibc:alpine-3.4
 
