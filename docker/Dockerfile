@@ -37,6 +37,12 @@ RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases
 
 ENV LANG=C.UTF-8
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Alpine linux has an unneeded existing web-proxy user
+# called squid which is one of the avatars!
+RUN deluser squid
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # install tini (for pid 1 zombie reaping)
 RUN apk add --update --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ tini
 ENTRYPOINT [ "/sbin/tini", "--" ]
