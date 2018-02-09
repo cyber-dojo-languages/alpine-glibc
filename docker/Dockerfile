@@ -7,5 +7,3 @@ ADD install.sh /
 
 RUN /install.sh \
   && rm -f /install.sh
-
-RUN cat /etc/issue | grep 3.7

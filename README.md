@@ -1,4 +1,5 @@
-# alpine-glibc 3.7
+# alpine-glibc
 
-![Build Status](https://travis-ci.org/cyber-dojo-languages/alpine-glibc-3.7.svg?branch=master)
+![Build Status](https://travis-ci.org/cyber-dojo-languages/alpine-glibc.svg?branch=master)
 
+Version=3.7
