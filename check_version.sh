@@ -6,7 +6,7 @@ readonly JSON=`cat docker/image_name.json`
 readonly IMAGE_NAME="${BASH_REMATCH[1]}"
 
 readonly MY_DIR="$( cd "$( dirname "${0}" )" && pwd )"
-readonly EXPECTED=3.11
+readonly EXPECTED=3.12
 readonly ACTUAL=$(docker run --rm -it ${IMAGE_NAME} sh -c 'cat /etc/issue')
 
 if echo "${ACTUAL}" | grep -q "${EXPECTED}"; then
