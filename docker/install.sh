@@ -1,9 +1,8 @@
 # From https://hub.docker.com/r/frolvlad/alpine-glibc/~/dockerfile/
 
 # Here we install GNU libc (aka glibc) and set C.UTF-8 locale as default.
-# We install gcompat beforehand, and then remove it again before installing glibc-bin and glibc-i18n due to this 
-# issue: https://github.com/sgerrand/alpine-pkg-glibc/issues/208
-# as suggested by: https://github.com/sgerrand/alpine-pkg-glibc/issues/208#issuecomment-1931353838
+# Use --force-overwrite for installing the glibc packages (line 28)
+# to try and solve this issue: https://github.com/sgerrand/alpine-pkg-glibc/issues/208
 
     LANG=C.UTF-8
 
@@ -12,7 +11,7 @@
     ALPINE_GLIBC_BASE_PACKAGE_FILENAME="glibc-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
     ALPINE_GLIBC_BIN_PACKAGE_FILENAME="glibc-bin-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
     ALPINE_GLIBC_I18N_PACKAGE_FILENAME="glibc-i18n-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
-    apk add --no-cache --virtual=.build-dependencies wget ca-certificates curl binutils zstd gcompat && \
+    apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
     echo \
         "-----BEGIN PUBLIC KEY-----\
         MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApZ2u1KJKUu/fW4A25y9m\
@@ -27,9 +26,8 @@
         "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
         "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
         "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
-    apk add --no-cache "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" && \
-    apk del gcompat && \
-    apk add --no-cache \
+    apk add --force-overwrite --no-cache  \
+        "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
         "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
         "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
     \
